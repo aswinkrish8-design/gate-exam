@@ -56,7 +56,7 @@ score++
 
 }
 
-fetch("YOUR_GOOGLE_SCRIPT_URL",{
+fetch("https://script.google.com/macros/s/AKfycbx4EJ24fG4e_AsB152pR3rQrWtrG7ORYXpcD65elH8yk75MlshTyO2LWwB2BuR8o1p0/exec",{
 
 method:"POST",
 
