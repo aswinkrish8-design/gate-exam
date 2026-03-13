@@ -56,7 +56,7 @@ score++
 
 }
 
-fetch("https://script.google.com/macros/s/AKfycbx4EJ24fG4e_AsB152pR3rQrWtrG7ORYXpcD65elH8yk75MlshTyO2LWwB2BuR8o1p0/exec",{
+fetch("https://script.google.com/macros/s/AKfycbyp-6oaHho0YJ_dh_m7S189TUghfzsTs_3YvRxkchmsCzuCfUPOjlK7CtzgXqGSM71d/exec",{
 
 method:"POST",
 
