@@ -71,7 +71,18 @@ score:score
 })
 
 })
+.then(response => response.text())
+.then(data => {
 
 alert("Exam submitted. Score: "+score)
+
+location.reload()
+
+})
+.catch(error => {
+
+console.error("Error:", error)
+
+})
 
 }
