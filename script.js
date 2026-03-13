@@ -42,6 +42,8 @@ loadQuestion()
 
 }
 
+
+
 function submitExam(){
 
 let name = prompt("Enter your name")
@@ -49,40 +51,23 @@ let name = prompt("Enter your name")
 let score = 0
 
 for(let i=0;i<questions.length;i++){
-
 if(answers[i] == questions[i].answer){
 score++
 }
-
 }
 
-fetch("https://script.google.com/macros/s/AKfycbyp-6oaHho0YJ_dh_m7S189TUghfzsTs_3YvRxkchmsCzuCfUPOjlK7CtzgXqGSM71d/exec",{
+let url = "https://script.google.com/macros/s/AKfycbyp-6oaHho0YJ_dh_m7S189TUghfzsTs_3YvRxkchmsCzuCfUPOjlK7CtzgXqGSM71d/exec"
 
-method:"POST",
+url += "?name=" + name
+url += "&q1=" + answers[0]
+url += "&q2=" + answers[1]
+url += "&q3=" + answers[2]
+url += "&score=" + score
 
-headers:{
-"Content-Type":"application/json"
-},
-
-body:JSON.stringify({
-name:name,
-answers:answers,
-score:score
-})
-
-})
-.then(response => response.text())
-.then(data => {
+fetch(url)
 
 alert("Exam submitted. Score: "+score)
 
 location.reload()
-
-})
-.catch(error => {
-
-console.error("Error:", error)
-
-})
 
 }
