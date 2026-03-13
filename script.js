@@ -60,6 +60,10 @@ fetch("https://script.google.com/macros/s/AKfycbx4EJ24fG4e_AsB152pR3rQrWtrG7ORYX
 
 method:"POST",
 
+headers:{
+"Content-Type":"application/json"
+},
+
 body:JSON.stringify({
 name:name,
 answers:answers,
