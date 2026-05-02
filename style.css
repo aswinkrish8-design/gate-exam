@@ -29,10 +29,9 @@ gap:10px;
 }
 
 .palette button{
-padding:10px;
-border:none;
-cursor:pointer;
-background:#ccc;
+height:50px;
+width:50px;
+font-size:16px;
 }
 
 .buttons button{
