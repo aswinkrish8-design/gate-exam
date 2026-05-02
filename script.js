@@ -85,3 +85,31 @@ function jump(i){
 current = i
 loadQuestion()
 }
+
+function submitExam(){
+
+let name = prompt("Enter your name")
+
+let score = 0
+
+for(let i=0;i<questions.length;i++){
+if(answers[i] == questions[i].answer){
+score++
+}
+}
+
+let url = "https://script.google.com/macros/s/AKfycbyp-6oaHho0YJ_dh_m7S189TUghfzsTs_3YvRxkchmsCzuCfUPOjlK7CtzgXqGSM71d/exec"
+
+url += "?name=" + encodeURIComponent(name)
+url += "&q1=" + answers[0]
+url += "&q2=" + answers[1]
+url += "&q3=" + answers[2]
+url += "&score=" + score
+
+window.open(url)
+
+alert("Exam submitted. Score: " + score)
+
+location.reload()
+
+}
