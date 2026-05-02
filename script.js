@@ -1,5 +1,6 @@
 let current = 0
-let answers = []
+let answers = new Array(questions.length).fill(null)
+let review = new Array(questions.length).fill(false)
 
 loadQuestion()
 
@@ -7,26 +8,29 @@ function loadQuestion(){
 
 let q = questions[current]
 
-document.getElementById("question").innerText = q.question
+document.getElementById("question").innerText =
+"Q" + (current+1) + ". " + q.question
 
 let html = ""
 
 q.options.forEach((opt,i)=>{
 
+let checked = answers[current]==i ? "checked" : ""
+
 html += `
 <label>
-<input type="radio" name="option" value="${i}">
+<input type="radio" name="option" value="${i}" ${checked}>
 ${opt}
 </label><br>
 `
-
 })
 
 document.getElementById("options").innerHTML = html
 
+updatePalette()
 }
 
-function nextQuestion(){
+function saveNext(){
 
 let selected = document.querySelector('input[name="option"]:checked')
 
@@ -39,35 +43,45 @@ current++
 if(current < questions.length){
 loadQuestion()
 }
-
 }
 
+function prevQuestion(){
 
+if(current>0){
+current--
+loadQuestion()
+}
+}
 
-function submitExam(){
+function clearResponse(){
+answers[current] = null
+loadQuestion()
+}
 
-let name = prompt("Enter your name")
+function markReview(){
+review[current] = true
+updatePalette()
+}
 
-let score = 0
+function updatePalette(){
+
+let palette = document.getElementById("palette")
+palette.innerHTML = ""
 
 for(let i=0;i<questions.length;i++){
-if(answers[i] == questions[i].answer){
-score++
+
+let color = "#ccc"
+
+if(review[i]) color = "purple"
+else if(answers[i]!=null) color = "green"
+
+palette.innerHTML +=
+`<button style="background:${color}"
+onclick="jump(${i})">${i+1}</button>`
 }
 }
 
-let url = "https://script.google.com/macros/s/AKfycbyp-6oaHho0YJ_dh_m7S189TUghfzsTs_3YvRxkchmsCzuCfUPOjlK7CtzgXqGSM71d/exec"
-
-url += "?name=" + name
-url += "&q1=" + answers[0]
-url += "&q2=" + answers[1]
-url += "&q3=" + answers[2]
-url += "&score=" + score
-
-fetch(url)
-
-alert("Exam submitted. Score: "+score)
-
-location.reload()
-
+function jump(i){
+current = i
+loadQuestion()
 }
